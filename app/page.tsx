@@ -1,103 +1,112 @@
-import Image from "next/image";
-
-export default function Home() {
+"use client"
+import React from 'react';
+import { useRouter } from 'next/navigation';
+const App = () => {
+  const router = useRouter()
+  const handleOnclick = ()=>{
+    router.push("/generate-note-quiz")
+  }
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div
+      className="relative flex min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
+      style={{ fontFamily: 'Lexend, "Noto Sans", sans-serif' }}
+    >
+      <div className="layout-container flex h-full grow flex-col">
+        
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        <div className="px-6 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+          <div className="layout-content-container flex flex-col w-full max-w-[960px] flex-1">
+            <div className="@container">
+              <div className="flex flex-col gap-6 px-4 py-10 sm:gap-8 lg:flex-row">
+                <div
+                  className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg sm:h-auto sm:min-w-[300px] md:min-w-[400px] lg:w-full"
+                  style={{
+                    backgroundImage:
+                      'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAB-KuzwmI0MqkYkarsBcjgu5wtsIbPYK8DObDEHQYwGAhKI0AO77yKT38ao2Lx_eNJvWB-sxicQx724nN7gsMD9nk0z3buYbdkm8fSraPlXi2TKJFJzf1x53kjdTqHBMupZ_srPq4YYU-gJ1s7-_hsfqTDI8tdO5llSbYKto03pVZt-8YmgBGhJpnWzZ_ybSentMSofjChBoe2toPVrByb2xvBiOP8oFasZFQqZrTjX32--F4AfNgoqRxslntysIA_uQLDA9RU4IY")',
+                  }}
+                ></div>
+                <div className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[400px] sm:gap-8 lg:justify-center">
+                  <div className="flex flex-col gap-2 text-left">
+                    <h1 className="text-[#111418] text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] sm:font-black sm:leading-tight sm:tracking-[-0.033em]">
+                      Transform your text into smart notes and quizzes.
+                    </h1>
+                    <h2 className="text-[#111418] text-sm sm:text-base font-normal leading-normal">
+                      NoteQuiz helps you study more efficiently by automatically generating notes and quizzes from your long texts. Quickly assess your knowledge and improve your
+                      understanding with our intuitive platform.
+                    </h2>
+                  </div>
+                  <button onClick={handleOnclick} className="flex min-w-[84px] max-w-full sm:max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 sm:h-12 sm:px-5 bg-[#3d99f5] text-white text-sm font-bold leading-normal tracking-[0.015em] sm:text-base sm:font-bold sm:leading-normal sm:tracking-[0.015em]">
+                    <span className="truncate">Get Started</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-10 px-4 py-10 @container">
+              <div className="flex flex-col gap-4">
+                <h1 className="text-[#111418] tracking-light text-2xl sm:text-[32px] font-bold leading-tight sm:leading-tight sm:tracking-[-0.033em] max-w-[720px]">
+                  Key Features
+                </h1>
+                <p className="text-[#111418] text-base font-normal leading-normal max-w-[720px]">
+                  Explore the powerful features of NoteQuiz designed to enhance your learning experience.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-0">
+                {[
+                  {
+                    title: 'Text Input',
+                    desc: 'Easily input your paragraphs or long texts into the application.',
+                    icon: (
+                      <path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z" />
+                    ),
+                  },
+                  {
+                    title: 'Automated Note Generation',
+                    desc: 'Our system automatically generates concise and informative notes from your text.',
+                    icon: (
+                      <path d="M88,96a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,96Zm8,40h64a8,8,0,0,0,0-16H96a8,8,0,0,0,0,16Zm32,16H96a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16ZM224,48V156.69A15.86,15.86,0,0,1,219.31,168L168,219.31A15.86,15.86,0,0,1,156.69,224H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM48,208H152V160a8,8,0,0,1,8-8h48V48H48Zm120-40v28.7L196.69,168Z" />
+                    ),
+                  },
+                  {
+                    title: 'Interactive Quizzes',
+                    desc: 'Engage with interactive quizzes created from your notes to test your knowledge.',
+                    icon: (
+                      <path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z" />
+                    ),
+                  },
+                ].map((feature, i) => (
+                  <div
+                    key={i}
+                    className="flex flex-1 gap-3 rounded-lg border border-[#dbe0e6] bg-white p-4 flex-col"
+                  >
+                    <div className="text-[#111418]">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24px"
+                        height="24px"
+                        fill="currentColor"
+                        viewBox="0 0 256 256"
+                      >
+                        {feature.icon}
+                      </svg>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <h2 className="text-[#111418] text-base font-bold leading-tight">
+                        {feature.title}
+                      </h2>
+                      <p className="text-[#60758a] text-sm font-normal leading-normal">
+                        {feature.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
-}
+};
+
+export default App;
