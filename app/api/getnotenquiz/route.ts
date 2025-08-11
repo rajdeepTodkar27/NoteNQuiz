@@ -51,7 +51,7 @@ Instructions:
 - The "answer" must be an integer index (0–3) indicating the correct option.
 - Output must strictly follow the provided JSON schema.
 
-{format_instructions}
+{quiz_format_instructions}
     `.trim()
             ]
         ]);
@@ -66,17 +66,17 @@ Instructions:
 - Write notes in bullet-point format, grouped by topic or section.
 - Avoid unnecessary details or repetition.
 
-{format_instructions}
+{note_format_instructions}
 `]
         ]);
 
 
         const finalChain = RunnableParallel.from({
-            notes: RunnableSequence.from([notePrompt, model1, noteParser]),
-            quizs: RunnableSequence.from([quizPrompt, model2, quizParser])
+            notes: RunnableSequence.from([notePrompt, model1, noteParser]).withConfig({tags: ['notes']}),
+            quizs: RunnableSequence.from([quizPrompt, model2, quizParser]).withConfig({tags: ['quizs']})
         });
 
-        const result = await finalChain.invoke({ text, format_instructions: noteParser.getFormatInstructions() })
+        const result = await finalChain.invoke({ text, note_format_instructions: noteParser.getFormatInstructions(),quiz_format_instructions: quizParser.getFormatInstructions() })
 
         return NextResponse.json({ message: "successfully created the quizs and notes", data: result }, { status: 201 })
 

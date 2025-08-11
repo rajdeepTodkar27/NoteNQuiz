@@ -1,12 +1,28 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
+import NoteAndQuiz from '@/libs/component/NoteAndQuiz';
+
+interface Quiz {
+  question: string;
+  options: string[];
+  answer: number
+}
+
+interface Result {
+  notes: string[];
+  quizs: Quiz[]
+}
 const TextProcessingApp = () => {
   const [text, setText] = useState<string>('');
-
+  const [data, setdata] = useState<Result | null >(null)
+  const [generatingNQ, setgeneratingNQ] = useState(false)
   const handleGenerate = () => {
-    
+    setgeneratingNQ(true)
     axios.post("/api/getnotenquiz",{text: text})
+    .then((res)=>setdata(res.data.data))
+    .catch((err)=>alert(err))
+    .finally(()=>setgeneratingNQ(false))
   };
 
   return (
@@ -24,7 +40,7 @@ const TextProcessingApp = () => {
           <div className="flex flex-col flex-1 w-full max-w-[960px]">
             <div className="flex flex-wrap justify-between gap-3 p-4">
               <p className="text-[#111418] tracking-light text-2xl md:text-3xl lg:text-[32px] font-bold leading-tight min-w-48">
-                Text Processing and Quiz Generation
+                Notes and Quiz Generation
               </p>
             </div>
 
@@ -38,16 +54,19 @@ const TextProcessingApp = () => {
                 />
               </label>
             </div>
-
+            <div className='flex justify-center text-blue-400'>
+              <div>{generatingNQ && 'Generating notes and quizes...'}</div>
+            </div>
             <div className="flex px-4 py-3 justify-end">
               <button
-                className="flex w-full sm:w-auto min-w-[84px] items-center justify-center rounded-lg h-10 px-4 bg-[#3d99f5] text-white text-sm font-bold"
+              disabled={generatingNQ}
+                className= {`flex w-full sm:w-auto min-w-[84px] items-center justify-center rounded-lg h-10 px-4  text-white text-sm font-bold ${generatingNQ ? "bg-gray-400" : "bg-[#3d99f5]"}`}
                 onClick={handleGenerate}
               >
                 <span className="truncate hover:cursor-pointer">Generate</span>
               </button>
             </div>
-
+            {data!==null && <NoteAndQuiz data={data}/>}
           </div>
         </div>
       </div>
